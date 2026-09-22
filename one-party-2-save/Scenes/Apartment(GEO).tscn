@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c6vis1677t3dc"]
+
+[ext_resource type="PackedScene" uid="uid://coo08qexpn0qf" path="res://Assets/3DModels (glbs)/Apartment.glb" id="1_40bmw"]
+
+[node name="Apartment" unique_id=1433729099 instance=ExtResource("1_40bmw")]

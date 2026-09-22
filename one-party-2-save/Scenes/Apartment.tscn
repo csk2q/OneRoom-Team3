@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bohl66mrv5bkl"]
+
+[ext_resource type="PackedScene" uid="uid://c6vis1677t3dc" path="res://Scenes/Apartment(GEO).tscn" id="1_shpx8"]
+
+[sub_resource type="Gradient" id="Gradient_shpx8"]
+offsets = PackedFloat32Array(0.2769231, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.48178947, 0.48178947, 0.48178947, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wi6ju"]
+gradient = SubResource("Gradient_shpx8")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b1lj4"]
+panorama = SubResource("GradientTexture2D_wi6ju")
+
+[sub_resource type="Sky" id="Sky_13qdw"]
+sky_material = SubResource("PanoramaSkyMaterial_b1lj4")
+
+[sub_resource type="Environment" id="Environment_xrivr"]
+background_mode = 2
+sky = SubResource("Sky_13qdw")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrivr"]
+
+[node name="Apartment" type="Node3D" unique_id=796389692]
+
+[node name="Geometry" parent="." unique_id=1433729099 instance=ExtResource("1_shpx8")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1829283239]
+environment = SubResource("Environment_xrivr")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1727070825]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=2001043160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xrivr")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=643551486]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -1.1570705, 10.470809, 13.264857)
