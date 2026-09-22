@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bohl66mrv5bkl"]
 
 [ext_resource type="PackedScene" uid="uid://c6vis1677t3dc" path="res://Scenes/Apartment(GEO).tscn" id="1_shpx8"]
+[ext_resource type="Script" uid="uid://cq8px46jisn1m" path="res://Scripts/Player.gd" id="2_u6l5p"]
+[ext_resource type="Texture2D" uid="uid://ct25i2x3o0uxa" path="res://icon.svg" id="3_i2yku"]
 
 [sub_resource type="Gradient" id="Gradient_shpx8"]
 offsets = PackedFloat32Array(0.2769231, 1)
@@ -19,9 +21,21 @@ sky_material = SubResource("PanoramaSkyMaterial_b1lj4")
 
 [sub_resource type="Environment" id="Environment_xrivr"]
 background_mode = 2
+background_energy_multiplier = 5.0
 sky = SubResource("Sky_13qdw")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrivr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_13qdw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i2yku")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Apartment" type="Node3D" unique_id=796389692]
 
@@ -31,10 +45,15 @@ sky = SubResource("Sky_13qdw")
 environment = SubResource("Environment_xrivr")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1727070825]
+script = ExtResource("2_u6l5p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=2001043160]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_xrivr")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D" unique_id=1892883063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+sprite_frames = SubResource("SpriteFrames_13qdw")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=643551486]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -1.1570705, 10.470809, 13.264857)
