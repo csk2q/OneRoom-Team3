@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c6vis1677t3dc" path="res://Scenes/Apartment(GEO).tscn" id="1_shpx8"]
 [ext_resource type="Script" uid="uid://cq8px46jisn1m" path="res://Scripts/Player.gd" id="2_u6l5p"]
 [ext_resource type="Texture2D" uid="uid://ct25i2x3o0uxa" path="res://icon.svg" id="3_i2yku"]
+[ext_resource type="Script" uid="uid://ccdpjopo8yxry" path="res://Scripts/Camera.gd" id="4_i2yku"]
 
 [sub_resource type="Gradient" id="Gradient_shpx8"]
 offsets = PackedFloat32Array(0.2769231, 1)
@@ -55,5 +56,7 @@ shape = SubResource("CapsuleShape3D_xrivr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 sprite_frames = SubResource("SpriteFrames_13qdw")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=643551486]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -1.1570705, 10.470809, 13.264857)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=643551486 node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -1.4340607, 2.3164792, 4.575939)
+script = ExtResource("4_i2yku")
+player = NodePath("../CharacterBody3D")
