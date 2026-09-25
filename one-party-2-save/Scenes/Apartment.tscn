@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://c6vis1677t3dc" path="res://Scenes/Apartment(GEO).tscn" id="1_shpx8"]
 [ext_resource type="Script" uid="uid://cq8px46jisn1m" path="res://Scripts/Player.gd" id="2_u6l5p"]
 [ext_resource type="Texture2D" uid="uid://ct25i2x3o0uxa" path="res://icon.svg" id="3_i2yku"]
+[ext_resource type="Texture2D" uid="uid://b8hs7k2yffpmg" path="res://Assets/Textures/Illustration_20260925.png" id="3_uvpbl"]
 [ext_resource type="Script" uid="uid://ccdpjopo8yxry" path="res://Scripts/Camera.gd" id="4_i2yku"]
+[ext_resource type="Script" uid="uid://bxca2se14b6w7" path="res://Scripts/Interact.gd" id="6_uvpbl"]
 
 [sub_resource type="Gradient" id="Gradient_shpx8"]
 offsets = PackedFloat32Array(0.2769231, 1)
@@ -25,6 +27,16 @@ background_mode = 2
 background_energy_multiplier = 5.0
 sky = SubResource("Sky_13qdw")
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_i2yku"]
+size = Vector2(2, 2.33)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2yku"]
+transparency = 1
+albedo_texture = ExtResource("3_uvpbl")
+billboard_mode = 2
+billboard_keep_scale = true
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrivr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_13qdw"]
@@ -38,6 +50,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="BoxMesh" id="BoxMesh_w4rxb"]
+size = Vector3(1.3, 4.0683594, 1.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w4rxb"]
+size = Vector3(1.876, 3.268, 2.63)
+
 [node name="Apartment" type="Node3D" unique_id=796389692]
 
 [node name="Geometry" parent="." unique_id=1433729099 instance=ExtResource("1_shpx8")]
@@ -48,15 +66,36 @@ environment = SubResource("Environment_xrivr")
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1727070825]
 script = ExtResource("2_u6l5p")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=702962012]
+transform = Transform3D(1.58, 0, 0, 0, 1.58, 0, 0, 0, 1.58, 0, 1.835, 0)
+mesh = SubResource("PlaneMesh_i2yku")
+surface_material_override/0 = SubResource("StandardMaterial3D_i2yku")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=2001043160]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_xrivr")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D" unique_id=1892883063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 sprite_frames = SubResource("SpriteFrames_13qdw")
 
+[node name="CameraTarget" type="Node3D" parent="CharacterBody3D" unique_id=371848358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1682515, 0)
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=643551486 node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -1.4340607, 2.3164792, 4.575939)
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -1.4340612, 4.068897, 5.3324804)
 script = ExtResource("4_i2yku")
-player = NodePath("../CharacterBody3D")
+player = NodePath("../CharacterBody3D/CameraTarget")
+
+[node name="Fridge" type="MeshInstance3D" parent="." unique_id=1434326498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.402293, 1.5341797, 3.1997406)
+mesh = SubResource("BoxMesh_w4rxb")
+
+[node name="Interact" type="Area3D" parent="Fridge" unique_id=21700668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79196835, -0.2914791, 0.017787218)
+script = ExtResource("6_uvpbl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fridge/Interact" unique_id=742635946]
+transform = Transform3D(1, 0, 0, 0, 0.9999321, 0.011653873, 0, -0.011653873, 0.9999321, 0.43823242, 0.07470322, 0.26693726)
+shape = SubResource("BoxShape3D_w4rxb")
