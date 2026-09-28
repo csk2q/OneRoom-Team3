@@ -1,16 +1,22 @@
+class_name Interact
 extends Area3D
 
+signal player_entered
+signal player_left
+signal player_click
+signal player_click_press
+signal player_click_release
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.area_entered.connect(_on_area_entered)
+	#self.area_entered.connect(_on_area_entered)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-
-func _on_area_entered(area):
-	if area is CharacterBody3D:
-		(area as CharacterBody3D)
+#func _on_area_entered(area):
+	#if area is CharacterBody3D:
+		#(area as CharacterBody3D)
