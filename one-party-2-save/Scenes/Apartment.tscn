@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://b8hs7k2yffpmg" path="res://Assets/Textures/Illustration_20260925.png" id="3_uvpbl"]
 [ext_resource type="Script" uid="uid://ccdpjopo8yxry" path="res://Scripts/Camera.gd" id="4_i2yku"]
 [ext_resource type="Script" uid="uid://b7dvdcdqd1n0q" path="res://Scripts/PlayerInteractor.gd" id="5_pmbmx"]
-[ext_resource type="Script" uid="uid://bxca2se14b6w7" path="res://Scripts/Interact.gd" id="6_uvpbl"]
 [ext_resource type="Script" uid="uid://c5wx8xc44xc57" path="res://Scripts/fridge.gd" id="7_0urwd"]
+[ext_resource type="PackedScene" uid="uid://b8qljgoo0toeq" path="res://Scenes/Interact.tscn" id="8_0urwd"]
 
 [sub_resource type="Gradient" id="Gradient_shpx8"]
 offsets = PackedFloat32Array(0.2769231, 1)
@@ -123,15 +123,8 @@ mesh = SubResource("BoxMesh_w4rxb")
 surface_material_override/0 = SubResource("StandardMaterial3D_a7gwu")
 script = ExtResource("7_0urwd")
 
-[node name="Interact" type="Area3D" parent="Fridge" unique_id=21700668]
+[node name="Interact" parent="Fridge" unique_id=1643358857 instance=ExtResource("8_0urwd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79196835, -0.2914791, 0.017787218)
-monitoring = false
-script = ExtResource("6_uvpbl")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Fridge/Interact" unique_id=742635946]
-transform = Transform3D(1, 0, 0, 0, 0.9999321, 0.011653873, 0, -0.011653873, 0.9999321, 0.43823242, 0.07470322, 0.26693726)
-shape = SubResource("BoxShape3D_w4rxb")
-debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Fridge" unique_id=616258222]
 
@@ -140,8 +133,12 @@ transform = Transform3D(1, 0, 0, 0, 0.9999321, 0.011653873, 0, -0.011653873, 0.9
 shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Fridge" unique_id=1560689090]
+
 [connection signal="player_click" from="Fridge/Interact" to="Fridge" method="say"]
 [connection signal="player_click_press" from="Fridge/Interact" to="Fridge" method="setColor" binds= [Color(0.76247567, 0.39677578, 0.09194263, 1)]]
 [connection signal="player_click_release" from="Fridge/Interact" to="Fridge" method="setColor" binds= [Color(1, 1, 1, 1)]]
 [connection signal="player_entered" from="Fridge/Interact" to="Fridge" method="set_outline" binds= [true]]
 [connection signal="player_left" from="Fridge/Interact" to="Fridge" method="set_outline" binds= [false]]
+
+[editable path="Fridge/Interact"]

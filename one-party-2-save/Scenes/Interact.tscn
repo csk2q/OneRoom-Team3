@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b8qljgoo0toeq"]
+
+[ext_resource type="Script" uid="uid://bxca2se14b6w7" path="res://Scripts/Interact.gd" id="1_j0nay"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w4rxb"]
+size = Vector3(2.03175, 3.268, 2.1869483)
+
+[node name="Interact" type="Area3D" unique_id=1643358857]
+monitoring = false
+script = ExtResource("1_j0nay")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1914826002]
+transform = Transform3D(1, 0, 0, 0, 0.9999321, 0.011653873, 0, -0.011653873, 0.9999321, 0.43823242, 0.07470322, 0.26693726)
+shape = SubResource("BoxShape3D_w4rxb")
+debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
