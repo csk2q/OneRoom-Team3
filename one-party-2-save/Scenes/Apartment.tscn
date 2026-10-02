@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b8qljgoo0toeq" path="res://Scenes/Interact.tscn" id="8_0urwd"]
 [ext_resource type="AudioStream" uid="uid://dhmjfycds81b6" path="res://Audio/416288__fugeni__empty-beer-bottles-clinking-clanking.wav" id="9_a7gwu"]
 [ext_resource type="PackedScene" uid="uid://c683y7g72vip8" path="res://Assets/3DModels (glbs)/Television_v4.glb" id="9_a7gwu"]
-[ext_resource type="Script" uid="uid://sexgjsge1ucf" path="res://Scripts/tv.gd" id="10_sij3n"]
+[ext_resource type="Material" uid="uid://dgqrqewrivown" path="res://Assets/3DModels (glbs)/Materials/box_material.tres" id="10_c5n7f"]
+[ext_resource type="Script" uid="uid://sexgjsge1ucf" path="res://Scripts/ObjectInteractor.gd" id="10_sij3n"]
 
 [sub_resource type="Gradient" id="Gradient_shpx8"]
 offsets = PackedFloat32Array(0.2769231, 1)
@@ -80,9 +81,7 @@ stencil_flags = 2
 stencil_outline_thickness = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w4rxb"]
-size = Vector3(2.03175, 3.268, 2.1869483)
-
-[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(2.03175, 5.249112, 2.1869483)
 
 [node name="Apartment" type="Node3D" unique_id=796389692]
 
@@ -142,22 +141,29 @@ debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 stream = ExtResource("9_a7gwu")
 
 [node name="Television_v4" parent="." unique_id=1049632088 instance=ExtResource("9_a7gwu")]
-transform = Transform3D(0.288004, 0, -0.7463603, 0, 0.79999983, 0, 0.7463603, 0, 0.288004, -6.974087, 4.7683716e-07, -8.20478)
+transform = Transform3D(0.79999524, 0, -0.0027276725, 0, 0.79999983, 0, 0.0027276725, 0, 0.79999524, -10.53284, 0.63827276, -3.7758837)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Television_v4" unique_id=822357588]
-transform = Transform3D(0.9999998, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 0.9999998, 0, 0, 0)
-mesh = SubResource("BoxMesh_g4v7s")
+[node name="Box" parent="Television_v4" index="0" unique_id=1517237121]
+surface_material_override/0 = ExtResource("10_c5n7f")
 script = ExtResource("10_sij3n")
+say_str = "Chhhhh (Tv sounds)"
 
-[node name="Interact" parent="Television_v4/MeshInstance3D" unique_id=1937824276 instance=ExtResource("8_0urwd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79196835, -0.2914791, 0.017787218)
+[node name="Interact" parent="Television_v4/Box" index="0" unique_id=1937824276 instance=ExtResource("8_0urwd")]
+transform = Transform3D(0.9999998, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 0.9999998, -0.7919693, -0.2914791, 0.01778698)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Television_v4/MeshInstance3D" unique_id=1533812007]
+[node name="CollisionShape3D" parent="Television_v4/Box/Interact" index="0" unique_id=1914826002]
+transform = Transform3D(1.0054288, 3.637979e-12, -1.8626451e-09, 0, 0.9813798, 0.030206196, 4.656613e-10, -0.011437656, 2.5917692, 2.1063232, 0.07470322, -0.016408443)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Television_v4/MeshInstance3D/StaticBody3D" unique_id=157856703]
-transform = Transform3D(1, 0, 0, 0, 0.9999321, 0.011653873, 0, -0.011653873, 0.9999321, 0.36035728, 0.49346066, 0.021255016)
+[node name="StaticBody3D" type="StaticBody3D" parent="Television_v4/Box/Interact" unique_id=1533812007]
+transform = Transform3D(1.0000001, 0, -2.3283064e-10, 0, 1, 0, 2.3283064e-10, 0, 1.0000001, 0.7919693, 0.2914791, -0.01778698)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Television_v4/Box/Interact/StaticBody3D" unique_id=157856703]
+transform = Transform3D(1.0056486, -1.0913936e-11, -3.7252903e-09, 0, 0.9806268, 0.030959021, 0, -0.011428878, 2.6563632, 0.36035824, 1.4648268, 0.009933472)
 shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
+
+[node name="Antenna" parent="Television_v4/Box" index="1" unique_id=744113256]
+visible = false
 
 [connection signal="player_click" from="Fridge/Interact" to="Fridge" method="say"]
 [connection signal="player_click_press" from="Fridge/Interact" to="Fridge" method="setColor" binds= [Color(0.76247567, 0.39677578, 0.09194263, 1)]]
@@ -165,6 +171,12 @@ debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 [connection signal="player_click_release" from="Fridge/Interact" to="Fridge" method="setColor" binds= [Color(1, 1, 1, 1)]]
 [connection signal="player_entered" from="Fridge/Interact" to="Fridge" method="set_outline" binds= [true]]
 [connection signal="player_left" from="Fridge/Interact" to="Fridge" method="set_outline" binds= [false]]
+[connection signal="player_click" from="Television_v4/Box/Interact" to="Television_v4/Box" method="say"]
+[connection signal="player_click_press" from="Television_v4/Box/Interact" to="Television_v4/Box" method="setColor" binds= [Color(0.12949139, 0.36538354, 1, 1)]]
+[connection signal="player_click_release" from="Television_v4/Box/Interact" to="Television_v4/Box" method="setColor" binds= [Color(0.27058825, 0.27058825, 0.2, 1)]]
+[connection signal="player_entered" from="Television_v4/Box/Interact" to="Television_v4/Box" method="setOutline" binds= [true]]
+[connection signal="player_left" from="Television_v4/Box/Interact" to="Television_v4/Box" method="setOutline" binds= [false]]
 
 [editable path="Fridge/Interact"]
-[editable path="Television_v4/MeshInstance3D/Interact"]
+[editable path="Television_v4"]
+[editable path="Television_v4/Box/Interact"]
