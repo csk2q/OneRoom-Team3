@@ -1,5 +1,5 @@
 extends MeshInstance3D
-export say_str
+@export var say_str: String = "placeholder"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,14 +11,14 @@ func _process(_delta):
 	pass
 
 func say():
-	print("TV: Spooky TV Guy")
+	print(say_str)
 
 func setColor(color: Color):
 	var mat: StandardMaterial3D = get_surface_override_material(0)
 	mat.albedo_color = color
 
 
-func set_outline(on: bool):
+func setOutline(on: bool):
 	var mat: StandardMaterial3D = get_surface_override_material(0)
 	if on:
 		#mat.stencil_mode = BaseMaterial3D.STENCIL_MODE_OUTLINE
