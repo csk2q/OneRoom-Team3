@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c683y7g72vip8" path="res://Assets/3DModels (glbs)/Television_v4.glb" id="9_a7gwu"]
 [ext_resource type="Material" uid="uid://dgqrqewrivown" path="res://Assets/3DModels (glbs)/Materials/box_material.tres" id="10_c5n7f"]
 [ext_resource type="Script" uid="uid://sexgjsge1ucf" path="res://Scripts/ObjectInteractor.gd" id="10_sij3n"]
+[ext_resource type="AudioStream" uid="uid://dhmjfycds81b6" path="res://Audio/416288__fugeni__empty-beer-bottles-clinking-clanking.wav" id="9_a7gwu"]
 
 [sub_resource type="Gradient" id="Gradient_shpx8"]
 offsets = PackedFloat32Array(0.2769231, 1)
@@ -137,6 +138,7 @@ shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Fridge" unique_id=1560689090]
+stream = ExtResource("9_a7gwu")
 
 [node name="Television_v4" parent="." unique_id=1049632088 instance=ExtResource("9_a7gwu")]
 transform = Transform3D(0.79999524, 0, -0.0027276725, 0, 0.79999983, 0, 0.0027276725, 0, 0.79999524, -10.53284, 0.63827276, -3.7758837)
@@ -165,6 +167,7 @@ visible = false
 
 [connection signal="player_click" from="Fridge/Interact" to="Fridge" method="say"]
 [connection signal="player_click_press" from="Fridge/Interact" to="Fridge" method="setColor" binds= [Color(0.76247567, 0.39677578, 0.09194263, 1)]]
+[connection signal="player_click_press" from="Fridge/Interact" to="Fridge/AudioStreamPlayer3D" method="play" binds= [0.0]]
 [connection signal="player_click_release" from="Fridge/Interact" to="Fridge" method="setColor" binds= [Color(1, 1, 1, 1)]]
 [connection signal="player_entered" from="Fridge/Interact" to="Fridge" method="set_outline" binds= [true]]
 [connection signal="player_left" from="Fridge/Interact" to="Fridge" method="set_outline" binds= [false]]
