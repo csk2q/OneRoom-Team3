@@ -1,0 +1,27 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bmlwqwq8gvuho"]
+
+[ext_resource type="Texture2D" uid="uid://bgodfvmcq11bd" path="res://Assets/AnimationSprites/Walking_01.png" id="1_eyr5l"]
+[ext_resource type="Texture2D" uid="uid://b87lm4i2ny05l" path="res://Assets/AnimationSprites/Walking_02.png" id="2_t8kso"]
+[ext_resource type="Texture2D" uid="uid://ubtyo2wbxhaq" path="res://Assets/AnimationSprites/Walking_03.png" id="3_pgap7"]
+[ext_resource type="Texture2D" uid="uid://b8twqcevulvfa" path="res://Assets/AnimationSprites/Walking_04.png" id="4_xgrwm"]
+
+[resource]
+resource_name = "PlayerWalking"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eyr5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t8kso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pgap7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xgrwm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

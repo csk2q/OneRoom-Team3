@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://b8hs7k2yffpmg" path="res://Assets/Textures/Illustration_20260925.png" id="3_uvpbl"]
 [ext_resource type="Script" uid="uid://ccdpjopo8yxry" path="res://Scripts/Camera.gd" id="4_i2yku"]
 [ext_resource type="Script" uid="uid://b7dvdcdqd1n0q" path="res://Scripts/PlayerInteractor.gd" id="5_pmbmx"]
+[ext_resource type="SpriteFrames" uid="uid://bmlwqwq8gvuho" path="res://Assets/Textures/Walking animation.tres" id="6_boyw8"]
 [ext_resource type="Script" uid="uid://c5wx8xc44xc57" path="res://Scripts/fridge.gd" id="7_0urwd"]
 [ext_resource type="PackedScene" uid="uid://b8qljgoo0toeq" path="res://Scenes/Interact.tscn" id="8_0urwd"]
-[ext_resource type="AudioStream" uid="uid://dhmjfycds81b6" path="res://Audio/416288__fugeni__empty-beer-bottles-clinking-clanking.wav" id="9_a7gwu"]
 [ext_resource type="PackedScene" uid="uid://c683y7g72vip8" path="res://Assets/3DModels (glbs)/Television_v4.glb" id="9_a7gwu"]
 [ext_resource type="Material" uid="uid://dgqrqewrivown" path="res://Assets/3DModels (glbs)/Materials/box_material.tres" id="10_c5n7f"]
 [ext_resource type="Script" uid="uid://sexgjsge1ucf" path="res://Scripts/ObjectInteractor.gd" id="10_sij3n"]
@@ -95,8 +95,16 @@ script = ExtResource("2_u6l5p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=702962012]
 transform = Transform3D(1.58, 0, 0, 0, 1.58, 0, 0, 0, 1.58, 0, 1.835, 0)
+visible = false
 mesh = SubResource("PlaneMesh_i2yku")
 surface_material_override/0 = SubResource("StandardMaterial3D_i2yku")
+
+[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="CharacterBody3D" unique_id=1423706026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.535, 0)
+pixel_size = 0.001
+billboard = 2
+alpha_cut = 1
+sprite_frames = ExtResource("6_boyw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=2001043160]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -138,12 +146,11 @@ shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Fridge" unique_id=1560689090]
-stream = ExtResource("9_a7gwu")
 
 [node name="Television_v4" parent="." unique_id=1049632088 instance=ExtResource("9_a7gwu")]
 transform = Transform3D(0.79999524, 0, -0.0027276725, 0, 0.79999983, 0, 0.0027276725, 0, 0.79999524, -10.53284, 0.63827276, -3.7758837)
 
-[node name="Box" parent="Television_v4" index="0" unique_id=1517237121]
+[node name="Box" parent="Television_v4" index="0" unique_id=1207816294]
 surface_material_override/0 = ExtResource("10_c5n7f")
 script = ExtResource("10_sij3n")
 say_str = "Chhhhh (Tv sounds)"
@@ -162,7 +169,7 @@ transform = Transform3D(1.0056486, -1.0913936e-11, -3.7252903e-09, 0, 0.9806268,
 shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
-[node name="Antenna" parent="Television_v4/Box" index="1" unique_id=744113256]
+[node name="Antenna" parent="Television_v4/Box" index="1" unique_id=1267821259]
 visible = false
 
 [connection signal="player_click" from="Fridge/Interact" to="Fridge" method="say"]
