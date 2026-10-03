@@ -33,7 +33,6 @@ sky_material = SubResource("PanoramaSkyMaterial_b1lj4")
 
 [sub_resource type="Environment" id="Environment_xrivr"]
 background_mode = 2
-background_energy_multiplier = 5.0
 sky = SubResource("Sky_13qdw")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i2yku"]
@@ -100,6 +99,35 @@ debug_color = Color(0.8509804, 0, 0.1764706, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1829283239]
 environment = SubResource("Environment_xrivr")
 
+[node name="Lighting" type="Node3D" parent="." unique_id=1560584444]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=2081310581]
+transform = Transform3D(1, 0, 0, 0, -0.8660254, 0.50000006, 0, -0.50000006, -0.8660254, -2.4308348, 4.9269443, -12.44773)
+visible = false
+light_energy = 2.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lighting" unique_id=1907111527]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.3856978, 10.168434, -4.2067275)
+light_energy = 3.0
+spot_range = 15.12
+spot_attenuation = 0.07
+spot_angle = 56.67
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Lighting" unique_id=2035305398]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -13.662798, 6.2316384, 3.330708)
+spot_range = 15.12
+spot_attenuation = 0.07
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Lighting" unique_id=1302633846]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 9.901027, 8.142807, 3.330708)
+spot_range = 15.12
+spot_attenuation = 0.07
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Lighting" unique_id=845019651]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 9.901027, 8.142807, -3.7700431)
+spot_range = 15.12
+spot_attenuation = 0.07
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1727070825]
 script = ExtResource("2_u6l5p")
 
@@ -162,7 +190,7 @@ debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 [node name="Television_v4" parent="InteractionSpots" unique_id=1049632088 instance=ExtResource("9_a7gwu")]
 transform = Transform3D(0.79999524, 0, -0.0027276725, 0, 0.79999983, 0, 0.0027276725, 0, 0.79999524, -10.53284, 0.63827276, -3.7758837)
 
-[node name="Box" parent="InteractionSpots/Television_v4" index="0" unique_id=1207816294]
+[node name="Box" parent="InteractionSpots/Television_v4" index="0" unique_id=1287958743]
 surface_material_override/0 = ExtResource("10_c5n7f")
 script = ExtResource("10_sij3n")
 say_str = "Chhhhh (Tv sounds)"
@@ -181,7 +209,7 @@ transform = Transform3D(1.0056486, -1.0913936e-11, -3.7252903e-09, 0, 0.9806268,
 shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
-[node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1267821259]
+[node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1076197333]
 visible = false
 
 [connection signal="player_click" from="InteractionSpots/Fridge/Interact" to="InteractionSpots/Fridge" method="say"]
