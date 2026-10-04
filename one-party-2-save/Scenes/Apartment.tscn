@@ -201,6 +201,15 @@ texture = ExtResource("8_ip1x0")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="Background" type="Sprite3D" parent="Camera3D" unique_id=953419551]
+transform = Transform3D(0.24148145, 0, 0.06470477, 0.032352384, 0.21650635, -0.12074073, -0.056035973, 0.125, 0.20912907, -10.565939, 41.8034, -80.5434)
+billboard = 1
+fixed_size = true
+texture_filter = 0
+texture = ExtResource("8_ip1x0")
+region_enabled = true
+region_rect = Rect2(-624, -377.5, 2579, 1336)
+
 [node name="InteractionSpots" type="Node3D" parent="." unique_id=1477783193]
 
 [node name="Fridge" type="MeshInstance3D" parent="InteractionSpots" unique_id=1434326498]
@@ -226,7 +235,7 @@ volume_db = -24.151
 [node name="Television_v4" parent="InteractionSpots" unique_id=1049632088 instance=ExtResource("9_a7gwu")]
 transform = Transform3D(0.79999524, 0, -0.0027276725, 0, 0.79999983, 0, 0.0027276725, 0, 0.79999524, -10.53284, 0.63827276, -3.7758837)
 
-[node name="Box" parent="InteractionSpots/Television_v4" index="0" unique_id=839307134]
+[node name="Box" parent="InteractionSpots/Television_v4" index="0" unique_id=1287958743]
 surface_material_override/0 = ExtResource("10_c5n7f")
 script = ExtResource("10_sij3n")
 say_str = "Chhhhh (Tv sounds)"
@@ -245,7 +254,7 @@ transform = Transform3D(1.0056486, -1.0913936e-11, -3.7252903e-09, 0, 0.9806268,
 shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
-[node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1997821398]
+[node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1076197333]
 visible = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1734927948]
