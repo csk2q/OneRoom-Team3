@@ -9,9 +9,12 @@
 [ext_resource type="SpriteFrames" uid="uid://bmlwqwq8gvuho" path="res://Assets/Textures/Walking animation.tres" id="6_boyw8"]
 [ext_resource type="Script" uid="uid://c5wx8xc44xc57" path="res://Scripts/fridge.gd" id="7_0urwd"]
 [ext_resource type="PackedScene" uid="uid://b8qljgoo0toeq" path="res://Scenes/Interact.tscn" id="8_0urwd"]
+[ext_resource type="Texture2D" uid="uid://ddpj17onytpa0" path="res://Assets/Textures/bg.png" id="8_ip1x0"]
 [ext_resource type="PackedScene" uid="uid://c683y7g72vip8" path="res://Assets/3DModels (glbs)/Television_v4.glb" id="9_a7gwu"]
 [ext_resource type="Material" uid="uid://dgqrqewrivown" path="res://Assets/3DModels (glbs)/Materials/box_material.tres" id="10_c5n7f"]
+[ext_resource type="AudioStream" uid="uid://dhmjfycds81b6" path="res://Audio/416288__fugeni__empty-beer-bottles-clinking-clanking.wav" id="10_rh25m"]
 [ext_resource type="Script" uid="uid://sexgjsge1ucf" path="res://Scripts/ObjectInteractor.gd" id="10_sij3n"]
+[ext_resource type="AudioStream" uid="uid://b0aopf5o7x5gf" path="res://Audio/life of the party.ogg" id="13_innei"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_eg381"]
 plane = Plane(0, 0, -11, 0)
@@ -167,6 +170,37 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -1.43406
 script = ExtResource("4_i2yku")
 player = NodePath("../CharacterBody3D/CameraTarget")
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Camera3D" unique_id=1192822591]
+visible = false
+show_behind_parent = true
+z_index = -10
+z_as_relative = false
+texture_repeat = 2
+offset_left = -33.0
+offset_top = -13.0
+offset_right = 2379.0
+offset_bottom = 1347.0
+scale = Vector2(0.5, 0.5)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer" unique_id=2091599572]
+transparent_bg = true
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(2412, 1360)
+render_target_update_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D/SubViewportContainer/SubViewport" unique_id=1143772629]
+z_index = -8
+texture_repeat = 2
+offset_left = 16.0
+offset_top = -8.0
+offset_right = 2422.0
+offset_bottom = 1362.0
+texture = ExtResource("8_ip1x0")
+expand_mode = 1
+stretch_mode = 1
+
 [node name="InteractionSpots" type="Node3D" parent="." unique_id=1477783193]
 
 [node name="Fridge" type="MeshInstance3D" parent="InteractionSpots" unique_id=1434326498]
@@ -186,11 +220,13 @@ shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="InteractionSpots/Fridge" unique_id=1560689090]
+stream = ExtResource("10_rh25m")
+volume_db = -24.151
 
 [node name="Television_v4" parent="InteractionSpots" unique_id=1049632088 instance=ExtResource("9_a7gwu")]
 transform = Transform3D(0.79999524, 0, -0.0027276725, 0, 0.79999983, 0, 0.0027276725, 0, 0.79999524, -10.53284, 0.63827276, -3.7758837)
 
-[node name="Box" parent="InteractionSpots/Television_v4" index="0" unique_id=1287958743]
+[node name="Box" parent="InteractionSpots/Television_v4" index="0" unique_id=839307134]
 surface_material_override/0 = ExtResource("10_c5n7f")
 script = ExtResource("10_sij3n")
 say_str = "Chhhhh (Tv sounds)"
@@ -209,8 +245,17 @@ transform = Transform3D(1.0056486, -1.0913936e-11, -3.7252903e-09, 0, 0.9806268,
 shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
-[node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1076197333]
+[node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1997821398]
 visible = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1734927948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4369717, 1.6021883, -2.235415)
+stream = ExtResource("13_innei")
+volume_db = -13.082
+unit_size = 12.52
+autoplay = true
+panning_strength = 1.58
+parameters/looping = false
 
 [connection signal="player_click" from="InteractionSpots/Fridge/Interact" to="InteractionSpots/Fridge" method="say"]
 [connection signal="player_click_press" from="InteractionSpots/Fridge/Interact" to="InteractionSpots/Fridge" method="setColor" binds= [Color(0.76247567, 0.39677578, 0.09194263, 1)]]
