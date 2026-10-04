@@ -8,9 +8,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	self.look_at(player.global_position)
 	var offset = 1.5
 	if abs(position.x - player.global_position.x) >= offset:
-		position.x = clamp(position.x, player.global_position.x - offset, player.global_position.x + offset)
+		var targetPos: float = clamp(position.x, player.global_position.x - offset, player.global_position.x + offset)
+		position.x = lerpf(global_position.x, targetPos, absf(global_position.x - targetPos))
 	fov = lerpf(75, 50, clamp(clamp(-player.global_position.z, 0, 5) / 5, 0, 1))
