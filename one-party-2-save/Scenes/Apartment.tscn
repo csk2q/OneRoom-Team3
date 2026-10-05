@@ -233,12 +233,12 @@ debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="InteractionSpots/Fridge" unique_id=1560689090]
 stream = ExtResource("10_rh25m")
-volume_db = -24.151
+volume_db = -21.132
 
 [node name="Television_v4" parent="InteractionSpots" unique_id=1049632088 instance=ExtResource("9_a7gwu")]
 transform = Transform3D(0.79999524, 0, -0.0027276725, 0, 0.79999983, 0, 0.0027276725, 0, 0.79999524, -10.53284, 0.63827276, -3.7758837)
 
-[node name="Box" parent="InteractionSpots/Television_v4" index="0" unique_id=1287958743]
+[node name="Box" parent="InteractionSpots/Television_v4" index="0" unique_id=839307134]
 surface_material_override/0 = ExtResource("10_c5n7f")
 script = ExtResource("10_sij3n")
 say_str = "Chhhhh (Tv sounds)"
@@ -258,13 +258,14 @@ transform = Transform3D(1, 0, 0, 0, 0.9999321, 0.011653873, 0, -0.011653873, 0.9
 shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
-[node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1076197333]
+[node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1997821398]
 visible = false
 
 [node name="LifeOfTheParty" type="AudioStreamPlayer" parent="." unique_id=119785836]
 stream = ExtResource("13_innei")
-volume_db = -5.0
+volume_db = -10.233
 autoplay = true
+parameters/looping = true
 
 [connection signal="player_click" from="InteractionSpots/Fridge/Interact" to="InteractionSpots/Fridge" method="say"]
 [connection signal="player_click_press" from="InteractionSpots/Fridge/Interact" to="InteractionSpots/Fridge" method="setColor" binds= [Color(0.76247567, 0.39677578, 0.09194263, 1)]]
