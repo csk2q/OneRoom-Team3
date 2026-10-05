@@ -86,7 +86,10 @@ stencil_flags = 2
 stencil_outline_thickness = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w4rxb"]
-size = Vector3(2.03175, 5.249112, 2.1869483)
+size = Vector3(2.032, 5.249, 5.657)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ip1x0"]
+size = Vector3(2.952, 3.523, 5.837)
 
 [node name="Apartment" type="Node3D" unique_id=796389692]
 
@@ -244,27 +247,24 @@ say_str = "Chhhhh (Tv sounds)"
 transform = Transform3D(0.9999998, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 0.9999998, -0.7919693, -0.2914791, 0.01778698)
 
 [node name="CollisionShape3D" parent="InteractionSpots/Television_v4/Box/Interact" index="0" unique_id=1914826002]
-transform = Transform3D(1.0054288, 3.637979e-12, -1.8626451e-09, 0, 0.9813798, 0.030206196, 4.656613e-10, -0.011437656, 2.5917692, 2.1063232, 0.07470322, -0.016408443)
+transform = Transform3D(1, 5.3974577e-12, -4.6311552e-10, 0, 0.9999321, 0.011653877, 4.6314697e-10, -0.011653877, 0.9999321, 2.1063232, 0.07470322, -0.016408443)
+shape = SubResource("BoxShape3D_ip1x0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="InteractionSpots/Television_v4/Box/Interact" unique_id=1533812007]
 transform = Transform3D(1.0000001, 0, -2.3283064e-10, 0, 1, 0, 2.3283064e-10, 0, 1.0000001, 0.7919693, 0.2914791, -0.01778698)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionSpots/Television_v4/Box/Interact/StaticBody3D" unique_id=157856703]
-transform = Transform3D(1.0056486, -1.0913936e-11, -3.7252903e-09, 0, 0.9806268, 0.030959021, 0, -0.011428878, 2.6563632, 0.36035824, 1.4648268, 0.009933472)
+transform = Transform3D(1, 0, 0, 0, 0.9999321, 0.011653873, 0, -0.011653873, 0.9999321, 0.36035824, 1.4648268, 0.009933472)
 shape = SubResource("BoxShape3D_w4rxb")
 debug_color = Color(0, 0.6, 0.69803923, 0.8627451)
 
 [node name="Antenna" parent="InteractionSpots/Television_v4/Box" index="1" unique_id=1076197333]
 visible = false
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1734927948]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4369717, 1.6021883, -2.235415)
+[node name="LifeOfTheParty" type="AudioStreamPlayer" parent="." unique_id=119785836]
 stream = ExtResource("13_innei")
-volume_db = -13.082
-unit_size = 12.52
+volume_db = -5.0
 autoplay = true
-panning_strength = 1.58
-parameters/looping = false
 
 [connection signal="player_click" from="InteractionSpots/Fridge/Interact" to="InteractionSpots/Fridge" method="say"]
 [connection signal="player_click_press" from="InteractionSpots/Fridge/Interact" to="InteractionSpots/Fridge" method="setColor" binds= [Color(0.76247567, 0.39677578, 0.09194263, 1)]]
